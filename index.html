@@ -227,6 +227,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle 
 .badge-p1{background:var(--warning-dim);color:var(--warning)}
 .badge-est{background:var(--primary-dim);color:var(--primary-2)}
 .badge-new{background:var(--teal-dim);color:var(--teal)}
+.badge-done{background:var(--success-dim);color:var(--success);font-weight:700}
+.badge-partial{background:var(--warning-dim);color:var(--warning);font-weight:700}
+.ticket.partial{border-left:3px solid var(--warning)}
+.ticket.checked .badge-done{background:var(--success-dim);color:var(--success)}
 .ticket-deps{font-size:.62rem;color:var(--text-muted);margin-top:3px}
 .ticket-deps span{color:var(--violet)}
 
@@ -375,6 +379,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle 
       <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
       <button class="filter-btn" onclick="setFilter('todo',this)">Todo</button>
       <button class="filter-btn" onclick="setFilter('done',this)">Done</button>
+      <button class="filter-btn" onclick="setFilter('partial',this)">Partial</button>
       <button class="filter-btn" onclick="setFilter('p0',this)">P0</button>
       <button class="filter-btn" onclick="setFilter('p1',this)">P1</button>
       <div class="filter-divider"></div>
@@ -429,43 +434,43 @@ const INCREMENTS=[
 {id:"A-2",title:"Add light mode / theme toggle",p:"P1",est:5,deps:"A-1"},
 {id:"A-3",title:"Hide or label incomplete modules",p:"P0",est:2,deps:"—"},
 {id:"A-4",title:"Add in-app onboarding checklist",p:"P0",est:5,deps:"—"},
-{id:"A-5",title:"Improve public Trust Center page layout",p:"P1",est:5,deps:"—"},
-{id:"A-6",title:"Show coverage progress inside each questionnaire",p:"P1",est:3,deps:"—"},
-{id:"A-7",title:"Fix Review module flow",p:"P0",est:5,deps:"—"}]},
+{id:"A-5",title:"Improve public Trust Center page layout",p:"P1",est:5,deps:"—",s:"partial"},
+{id:"A-6",title:"Show coverage progress inside each questionnaire",p:"P1",est:3,deps:"—",s:"partial"},
+{id:"A-7",title:"Fix Review module flow",p:"P0",est:5,deps:"—",s:"partial"}]},
 {num:2,title:"Trust Center Enhancements",color:"purple",layer:"product",tickets:[
 {id:"B-1",title:"NDA gating for Trust Center documents",p:"P1",est:5,deps:"—"},
 {id:"B-2",title:"Content expiration on Trust Center articles",p:"P1",est:3,deps:"—"},
 {id:"B-3",title:"Auto-populate Trust Center from approved answers",p:"P1",est:5,deps:"—"},
 {id:"B-4",title:"Trust Center viewer analytics",p:"P1",est:5,deps:"—"},
-{id:"B-5",title:"Customer-specific Trust Center pages",p:"P1",est:5,deps:"—"}]},
+{id:"B-5",title:"Customer-specific Trust Center pages",p:"P1",est:5,deps:"—",s:"partial"}]},
 {num:3,title:"Vendor Risk & Requests",color:"green",layer:"product",tickets:[
-{id:"C-1",title:"Complete the Requests module CRUD",p:"P0",est:5,deps:"—"},
+{id:"C-1",title:"Complete the Requests module CRUD",p:"P0",est:5,deps:"—",s:"partial"},
 {id:"C-2",title:"Vendor risk scoring",p:"P0",est:5,deps:"C-1"},
-{id:"C-3",title:"Vendor questionnaire intake via secure link",p:"P0",est:8,deps:"C-1"},
-{id:"C-4",title:"Vendor status tracking dashboard",p:"P0",est:5,deps:"C-1, C-2"}]},
+{id:"C-3",title:"Vendor questionnaire intake via secure link",p:"P0",est:8,deps:"C-1",s:"partial"},
+{id:"C-4",title:"Vendor status tracking dashboard",p:"P0",est:5,deps:"C-1, C-2",s:"partial"}]},
 {num:4,title:"Knowledge Base & AI Quality",color:"teal",layer:"product",tickets:[
-{id:"D-1",title:"Cross-questionnaire answer library",p:"P0",est:8,deps:"—"},
-{id:"D-2",title:"Answer reuse suggestions",p:"P0",est:5,deps:"D-1"},
-{id:"D-3",title:"Confidence scores on every answer",p:"P0",est:5,deps:"—"},
-{id:"D-4",title:"Evidence link citations in exports",p:"P0",est:5,deps:"D-3"}]},
+{id:"D-1",title:"Cross-questionnaire answer library",p:"P0",est:8,deps:"—",s:"partial"},
+{id:"D-2",title:"Answer reuse suggestions",p:"P0",est:5,deps:"D-1",s:"partial"},
+{id:"D-3",title:"Confidence scores on every answer",p:"P0",est:5,deps:"—",s:"partial"},
+{id:"D-4",title:"Evidence link citations in exports",p:"P0",est:5,deps:"D-3",s:"done"}]},
 {num:5,title:"Cloud Integrations",color:"gold",layer:"product",tickets:[
 {id:"E-1",title:"AWS integration (IAM, S3, CloudTrail)",p:"P1",est:8,deps:"—",tech:"boto3"},
 {id:"E-2",title:"GCP integration",p:"P1",est:8,deps:"—"},
 {id:"E-3",title:"Azure integration",p:"P1",est:8,deps:"—"},
-{id:"E-4",title:"Okta / Google Workspace integration",p:"P1",est:5,deps:"—"},
-{id:"E-5",title:"GitHub / GitLab integration",p:"P1",est:5,deps:"—"},
+{id:"E-4",title:"Okta / Google Workspace integration",p:"P1",est:5,deps:"—",s:"partial"},
+{id:"E-5",title:"GitHub / GitLab integration",p:"P1",est:5,deps:"—",s:"partial"},
 {id:"E-6",title:"Jira integration",p:"P1",est:5,deps:"—"},
-{id:"E-7",title:"Expand Slack / Teams evidence ingestion",p:"P1",est:5,deps:"—"}]},
+{id:"E-7",title:"Expand Slack / Teams evidence ingestion",p:"P1",est:5,deps:"—",s:"partial"}]},
 {num:6,title:"Marketing Site & Content",color:"orange",layer:"product",tickets:[
-{id:"F-1",title:"Rewrite landing page hero copy",p:"P0",est:3,deps:"—"},
-{id:"F-2",title:"Add pricing prominently to landing page",p:"P0",est:3,deps:"—"},
-{id:"F-3",title:'Add "How it works" section',p:"P0",est:3,deps:"—"},
+{id:"F-1",title:"Rewrite landing page hero copy",p:"P0",est:3,deps:"—",s:"done"},
+{id:"F-2",title:"Add pricing prominently to landing page",p:"P0",est:3,deps:"—",s:"done"},
+{id:"F-3",title:'Add "How it works" section',p:"P0",est:3,deps:"—",s:"done"},
 {id:"F-4",title:"Add social proof section",p:"P1",est:3,deps:"—"},
 {id:"F-5",title:"Add ROI calculator",p:"P1",est:5,deps:"—"},
 {id:"F-6",title:"Create product demo video",p:"P1",est:5,deps:"—"},
 {id:"F-7",title:"SEO blog content",p:"P1",est:3,deps:"—"}]},
 {num:7,title:"Pricing & Credit System",color:"param",layer:"product",tickets:[
-{id:"I-1",title:"Create free/sandbox tier",p:"P0",est:5,deps:"—"},
+{id:"I-1",title:"Create free/sandbox tier",p:"P0",est:5,deps:"—",s:"partial"},
 {id:"I-2",title:"Add enterprise tier",p:"P1",est:3,deps:"—"},
 {id:"I-3",title:"Explore per-framework pricing",p:"P1",est:3,deps:"—"},
 {id:"L-1",title:"Implement $399/mo Deal-Saver tier",p:"P0",est:5,deps:"—",tech:"Stripe"},
@@ -473,7 +478,7 @@ const INCREMENTS=[
 {id:"L-3",title:"Add credit top-up purchasing",p:"P0",est:5,deps:"L-2"},
 {id:"L-4",title:'Create "Done-For-You" service tier',p:"P0",est:5,deps:"L-1"},
 {id:"L-5",title:"Build sandbox tier with deliberate limits",p:"P0",est:5,deps:"I-1"},
-{id:"L-6",title:"Redesign the pricing page",p:"P0",est:5,deps:"L-1, I-1"},
+{id:"L-6",title:"Redesign the pricing page",p:"P0",est:5,deps:"L-1, I-1",s:"partial"},
 {id:"L-7",title:"Update Stripe products and prices",p:"P0",est:3,deps:"L-1",tech:"Stripe"},
 {id:"O-1",title:"Add credit fields to workspace model",p:"P0",est:3,deps:"L-2"},
 {id:"O-2",title:"Add credit consumption logic",p:"P0",est:5,deps:"O-1"},
@@ -516,33 +521,33 @@ const INCREMENTS=[
 {id:"K-3",title:"Explore strategic partnerships",p:"P1",est:3,deps:"—"},
 {id:"K-4",title:"Define first hiring plan",p:"P1",est:3,deps:"—"}]},
 {num:12,title:"Platform Foundation",color:"green",layer:"platform",tickets:[
-{id:"P0-01",title:"Define core domain model",p:"P0",est:8,deps:"—",tech:"SQLAlchemy"},
-{id:"P0-02",title:"Create control catalog",p:"P0",est:8,deps:"P0-01"},
-{id:"P0-03",title:"Design evidence schema",p:"P0",est:8,deps:"P0-01"},
-{id:"P0-04",title:"Build tenant isolation rules",p:"P0",est:5,deps:"P0-01"},
-{id:"P0-05",title:"Create source registry",p:"P0",est:5,deps:"P0-01"},
-{id:"P0-06",title:"Stand up async job queue",p:"P0",est:5,deps:"P0-01",tech:"Worker"},
-{id:"P0-07",title:"Create system audit log",p:"P0",est:5,deps:"P0-01"},
-{id:"P0-08",title:"Implement secrets management",p:"P0",est:5,deps:"—"},
+{id:"P0-01",title:"Define core domain model",p:"P0",est:8,deps:"—",tech:"SQLAlchemy",s:"done"},
+{id:"P0-02",title:"Create control catalog",p:"P0",est:8,deps:"P0-01",s:"done"},
+{id:"P0-03",title:"Design evidence schema",p:"P0",est:8,deps:"P0-01",s:"done"},
+{id:"P0-04",title:"Build tenant isolation rules",p:"P0",est:5,deps:"P0-01",s:"done"},
+{id:"P0-05",title:"Create source registry",p:"P0",est:5,deps:"P0-01",s:"partial"},
+{id:"P0-06",title:"Stand up async job queue",p:"P0",est:5,deps:"P0-01",tech:"Worker",s:"done"},
+{id:"P0-07",title:"Create system audit log",p:"P0",est:5,deps:"P0-01",s:"done"},
+{id:"P0-08",title:"Implement secrets management",p:"P0",est:5,deps:"—",s:"partial"},
 {id:"P0-09",title:"Add feature flags by workspace",p:"P0",est:5,deps:"P0-01"},
-{id:"P0-10",title:"Build credits and usage ledger",p:"P0",est:5,deps:"P0-01"},
+{id:"P0-10",title:"Build credits and usage ledger",p:"P0",est:5,deps:"P0-01",s:"partial"},
 {id:"P0-11",title:"Create operator workspace",p:"P0",est:8,deps:"P0-01"},
 {id:"P0-12",title:"Write security and data-handling FAQ",p:"P0",est:3,deps:"—"},
 {id:"P0-13",title:"Create demo proof package",p:"P0",est:5,deps:"—"},
-{id:"P0-14",title:"Build customer-ready export pack",p:"P0",est:5,deps:"P0-01"}]},
+{id:"P0-14",title:"Build customer-ready export pack",p:"P0",est:5,deps:"P0-01",s:"done"}]},
 {num:13,title:"First-Wave Connectors",color:"teal",layer:"platform",tickets:[
-{id:"P1-15",title:"Build connector setup wizard",p:"P0",est:5,deps:"P0-05"},
+{id:"P1-15",title:"Build connector setup wizard",p:"P0",est:5,deps:"P0-05",s:"partial"},
 {id:"P1-16",title:"Build raw ingestion pipeline",p:"P0",est:5,deps:"P1-15"},
 {id:"P1-17",title:"Build AWS authentication",p:"P0",est:5,deps:"P1-15",tech:"boto3"},
 {id:"P1-18",title:"Build AWS IAM collector",p:"P0",est:5,deps:"P1-17"},
 {id:"P1-19",title:"Build AWS S3 posture collector",p:"P0",est:5,deps:"P1-17"},
 {id:"P1-20",title:"Build AWS logging collector",p:"P0",est:5,deps:"P1-17"},
 {id:"P1-21",title:"Build AWS sync scheduler",p:"P0",est:5,deps:"P1-17"},
-{id:"P1-22",title:"Build GitHub authentication",p:"P0",est:3,deps:"P1-15"},
+{id:"P1-22",title:"Build GitHub authentication",p:"P0",est:3,deps:"P1-15",s:"partial"},
 {id:"P1-23",title:"Build GitHub repo collector",p:"P0",est:5,deps:"P1-22"},
 {id:"P1-24",title:"Build GitHub access collector",p:"P0",est:5,deps:"P1-22"},
 {id:"P1-25",title:"Build GitHub protection collector",p:"P0",est:5,deps:"P1-22"},
-{id:"P1-26",title:"Build Google Workspace auth",p:"P0",est:3,deps:"P1-15"},
+{id:"P1-26",title:"Build Google Workspace auth",p:"P0",est:3,deps:"P1-15",s:"partial"},
 {id:"P1-27",title:"Build Google Workspace user collector",p:"P0",est:5,deps:"P1-26"},
 {id:"P1-28",title:"Build Google Workspace MFA collector",p:"P0",est:3,deps:"P1-26"},
 {id:"P1-29",title:"Build Google Workspace admin-role collector",p:"P0",est:3,deps:"P1-26"},
@@ -554,45 +559,45 @@ const INCREMENTS=[
 {id:"P1-34",title:"Store control state snapshots",p:"P0",est:5,deps:"P1-31"},
 {id:"P1-35",title:"Build pass/fail evaluator",p:"P0",est:5,deps:"P1-31"},
 {id:"P1-36",title:"Build drift detection",p:"P0",est:5,deps:"P1-34"},
-{id:"P1-37",title:"Build alerting engine",p:"P0",est:5,deps:"P1-36"},
+{id:"P1-37",title:"Build alerting engine",p:"P0",est:5,deps:"P1-36",s:"partial"},
 {id:"P1-38",title:"Build acknowledgement and snooze flows",p:"P1",est:3,deps:"P1-37"},
 {id:"P1-39",title:"Build manual override with reason codes",p:"P1",est:3,deps:"P1-31"},
 {id:"P1-40",title:"Build control timeline view",p:"P1",est:5,deps:"P1-34"}]},
 {num:15,title:"Evidence Engine",color:"orange",layer:"platform",tickets:[
 {id:"P1-41",title:"Build evidence cards per control",p:"P0",est:5,deps:"P0-03"},
-{id:"P1-42",title:'Add "last verified" timestamps',p:"P0",est:2,deps:"P0-03"},
-{id:"P1-43",title:"Build evidence freshness policies",p:"P0",est:3,deps:"P1-42"},
-{id:"P1-44",title:"Build evidence version history",p:"P0",est:3,deps:"P0-03"},
+{id:"P1-42",title:'Add "last verified" timestamps',p:"P0",est:2,deps:"P0-03",s:"done"},
+{id:"P1-43",title:"Build evidence freshness policies",p:"P0",est:3,deps:"P1-42",s:"partial"},
+{id:"P1-44",title:"Build evidence version history",p:"P0",est:3,deps:"P0-03",s:"done"},
 {id:"P1-45",title:"Build evidence diff viewer",p:"P1",est:5,deps:"P1-44"},
-{id:"P1-46",title:"Build source confidence scoring",p:"P0",est:5,deps:"P0-03"},
-{id:"P1-47",title:"Build evidence approval workflows",p:"P0",est:5,deps:"P0-03"},
-{id:"P1-48",title:"Build citation composer",p:"P0",est:5,deps:"P1-46"},
-{id:"P1-49",title:"Build coverage report generator",p:"P0",est:5,deps:"P0-02"},
-{id:"P1-50",title:"Build gap-list generator",p:"P0",est:5,deps:"P1-49"},
-{id:"P1-51",title:"Build evidence retention and archiving",p:"P1",est:5,deps:"P0-03"},
-{id:"P1-52",title:"Build evidence search and retrieval APIs",p:"P1",est:5,deps:"P0-03",tech:"pgvector"}]},
+{id:"P1-46",title:"Build source confidence scoring",p:"P0",est:5,deps:"P0-03",s:"partial"},
+{id:"P1-47",title:"Build evidence approval workflows",p:"P0",est:5,deps:"P0-03",s:"partial"},
+{id:"P1-48",title:"Build citation composer",p:"P0",est:5,deps:"P1-46",s:"partial"},
+{id:"P1-49",title:"Build coverage report generator",p:"P0",est:5,deps:"P0-02",s:"done"},
+{id:"P1-50",title:"Build gap-list generator",p:"P0",est:5,deps:"P1-49",s:"done"},
+{id:"P1-51",title:"Build evidence retention and archiving",p:"P1",est:5,deps:"P0-03",s:"partial"},
+{id:"P1-52",title:"Build evidence search and retrieval APIs",p:"P1",est:5,deps:"P0-03",tech:"pgvector",s:"partial"}]},
 {num:16,title:"Questionnaire OS",color:"param",layer:"platform",tickets:[
-{id:"P1-53",title:"Build questionnaire file ingestion",p:"P0",est:5,deps:"P0-06"},
-{id:"P1-54",title:"Build question extraction and normalization",p:"P0",est:5,deps:"P1-53"},
-{id:"P1-55",title:"Build question classification",p:"P0",est:5,deps:"P1-54"},
-{id:"P1-56",title:"Build answer assembly pipeline",p:"P0",est:8,deps:"P1-55",tech:"RAG"},
-{id:"P1-57",title:"Build confidence-based routing",p:"P0",est:5,deps:"P1-56"},
-{id:"P1-58",title:"Build export back to original format",p:"P0",est:5,deps:"P1-56"},
+{id:"P1-53",title:"Build questionnaire file ingestion",p:"P0",est:5,deps:"P0-06",s:"done"},
+{id:"P1-54",title:"Build question extraction and normalization",p:"P0",est:5,deps:"P1-53",s:"done"},
+{id:"P1-55",title:"Build question classification",p:"P0",est:5,deps:"P1-54",s:"done"},
+{id:"P1-56",title:"Build answer assembly pipeline",p:"P0",est:8,deps:"P1-55",tech:"RAG",s:"done"},
+{id:"P1-57",title:"Build confidence-based routing",p:"P0",est:5,deps:"P1-56",s:"partial"},
+{id:"P1-58",title:"Build export back to original format",p:"P0",est:5,deps:"P1-56",s:"done"},
 {id:"P1-59",title:"Build customer-specific knowledge packs",p:"P1",est:5,deps:"P1-56"},
 {id:"P1-60",title:"Build done-for-you operator queue",p:"P0",est:5,deps:"P1-56"},
 {id:"P1-61",title:"Build SLA and turnaround tracking",p:"P1",est:5,deps:"P1-53"},
 {id:"P1-62",title:"Build credit burn and overage prompts",p:"P1",est:3,deps:"O-2"}]},
 {num:17,title:"Trust Center & Memory Platform",color:"decorator",layer:"platform",tickets:[
-{id:"P1-63",title:"Build Trust Center content model",p:"P0",est:5,deps:"P0-01"},
+{id:"P1-63",title:"Build Trust Center content model",p:"P0",est:5,deps:"P0-01",s:"done"},
 {id:"P1-64",title:"Build auto-publish from approved controls",p:"P0",est:5,deps:"P1-63"},
 {id:"P1-65",title:"Build NDA-gated access requests",p:"P1",est:5,deps:"P1-63"},
 {id:"P1-66",title:"Build shareable spaces per buyer",p:"P1",est:5,deps:"P1-63"},
 {id:"P1-67",title:"Build Trust Center analytics",p:"P1",est:5,deps:"P1-63"},
-{id:"P1-68",title:"Build request-a-document flow",p:"P0",est:5,deps:"P1-63"},
+{id:"P1-68",title:"Build request-a-document flow",p:"P0",est:5,deps:"P1-63",s:"done"},
 {id:"P1-69",title:"Build public vs private answer tiers",p:"P1",est:5,deps:"P1-63"},
 {id:"P1-70",title:"Build branding and access expiration",p:"P1",est:5,deps:"P1-63"},
 {id:"P1-71",title:"Build golden-answer library",p:"P0",est:8,deps:"P1-56"},
-{id:"P1-72",title:"Build answer approval workflows",p:"P0",est:5,deps:"P1-71"},
+{id:"P1-72",title:"Build answer approval workflows",p:"P0",est:5,deps:"P1-71",s:"partial"},
 {id:"P1-73",title:"Build similar-question matching",p:"P0",est:5,deps:"P1-71",tech:"pgvector"},
 {id:"P1-74",title:"Build customer-specific overrides",p:"P1",est:5,deps:"P1-71"},
 {id:"P1-75",title:"Build answer expiry and review cycles",p:"P1",est:3,deps:"P1-72"},
@@ -607,7 +612,7 @@ const INCREMENTS=[
 {id:"P0-83",title:"Build case study template",p:"P0",est:3,deps:"H-4"},
 {id:"P0-84",title:"Build benchmark dashboard",p:"P0",est:8,deps:"—"},
 {id:"P0-85",title:"Add proof widgets inside product",p:"P0",est:5,deps:"—"},
-{id:"P0-86",title:"Instrument product events end to end",p:"P0",est:5,deps:"P0-07"},
+{id:"P0-86",title:"Instrument product events end to end",p:"P0",est:5,deps:"P0-07",s:"partial"},
 {id:"P0-87",title:"Build executive dashboard",p:"P0",est:8,deps:"P0-84"}]},
 {num:19,title:"Distribution Infrastructure",color:"blue",layer:"platform",tickets:[
 {id:"P0-88",title:"Define ICP and trigger taxonomy",p:"P0",est:3,deps:"—"},
@@ -619,13 +624,13 @@ const INCREMENTS=[
 {id:"P0-94",title:"Build testimonial and referral workflow",p:"P1",est:3,deps:"H-3"},
 {id:"P0-95",title:"Build attribution and demand capture",p:"P1",est:5,deps:"P0-86"}]},
 {num:20,title:"Enterprise Hardening",color:"purple",layer:"platform",tickets:[
-{id:"P2-96",title:"Build role-based access control",p:"P0",est:5,deps:"P0-01"},
-{id:"P2-97",title:"Build SSO and SAML support",p:"P0",est:5,deps:"P0-01",tech:"OIDC/SAML"},
-{id:"P2-98",title:"Build product MFA enforcement",p:"P0",est:5,deps:"P0-01",tech:"TOTP"},
-{id:"P2-99",title:"Build data retention and export controls",p:"P0",est:5,deps:"P0-03"},
+{id:"P2-96",title:"Build role-based access control",p:"P0",est:5,deps:"P0-01",s:"done"},
+{id:"P2-97",title:"Build SSO and SAML support",p:"P0",est:5,deps:"P0-01",tech:"OIDC/SAML",s:"partial"},
+{id:"P2-98",title:"Build product MFA enforcement",p:"P0",est:5,deps:"P0-01",tech:"TOTP",s:"done"},
+{id:"P2-99",title:"Build data retention and export controls",p:"P0",est:5,deps:"P0-03",s:"partial"},
 {id:"P2-100",title:"Build incident and status pages",p:"P1",est:5,deps:"—"},
 {id:"P2-101",title:"Build reliability SLIs and on-call",p:"P1",est:5,deps:"P0-06"},
-{id:"P2-102",title:"Build billing integration and invoicing",p:"P0",est:5,deps:"L-1",tech:"Stripe"},
+{id:"P2-102",title:"Build billing integration and invoicing",p:"P0",est:5,deps:"L-1",tech:"Stripe",s:"partial"},
 {id:"P2-103",title:"Build GCP connector pack",p:"P1",est:8,deps:"P1-15"},
 {id:"P2-104",title:"Build Azure connector pack",p:"P1",est:8,deps:"P1-15"},
 {id:"P2-105",title:"Build GitLab connector pack",p:"P1",est:5,deps:"P1-15"},
@@ -698,7 +703,13 @@ const LAYER_LABELS={product:"PROD",platform:"PLAT",vision:"VIS"};
 const LAYER_CSS={product:"prod",platform:"plat",vision:"vis"};
 const STORAGE_KEY="tc-backlog-v2";
 let checked={},currentFilter="all";
-function loadState(){try{checked=JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){checked={}}}
+function loadState(){
+  try{checked=JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){checked={}}
+  if(!localStorage.getItem(STORAGE_KEY)){
+    INCREMENTS.forEach(inc=>inc.tickets.forEach(t=>{if(t.s==="done")checked[t.id]=true}));
+    saveState();
+  }
+}
 function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(checked))}
 function switchTab(id,btn){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+id).classList.add('active');if(id==='charts')requestAnimationFrame(drawAllCharts);if(id==='performance')renderPerformance();if(id==='diagrams')renderDiagrams()}
 function render(){
@@ -715,8 +726,8 @@ function render(){
     sec.innerHTML=`<div class="increment-header" onclick="toggleIncrement(this)"><span class="increment-chevron">&#9654;</span><span class="increment-num">${inc.num}</span><span class="increment-title">${inc.title}</span><span class="increment-layer ${LAYER_CSS[inc.layer]}">${LAYER_LABELS[inc.layer]}</span><div class="increment-meta"><span class="increment-count">${done}/${total}</span><div class="increment-progress-bar"><div class="increment-progress-fill" style="width:${pct}%"></div></div><span class="increment-pct" style="color:${pct===100?'var(--success)':'var(--text-secondary)'}">${pct}%</span></div></div><div class="increment-body"><div class="ticket-list" id="tickets-${inc.num}"></div></div>`;
     content.appendChild(sec);
     const tl=sec.querySelector(".ticket-list");
-    inc.tickets.forEach(t=>{const ic=!!checked[t.id];const c=document.createElement("div");c.className="ticket"+(ic?" checked":"");c.dataset.id=t.id;c.dataset.priority=t.p.toLowerCase();c.dataset.layer=inc.layer;
-      c.innerHTML=`<label class="ticket-checkbox"><input type="checkbox" ${ic?"checked":""} onchange="toggleTicket('${t.id}',this)"><span class="checkmark"></span></label><div class="ticket-info"><div class="ticket-top"><span class="ticket-id">${t.id}</span><span class="ticket-title">${t.title}</span></div><div class="ticket-deps">deps: <span>${t.deps}</span></div></div><div class="ticket-badges"><span class="badge badge-${t.p.toLowerCase()}">${t.p}</span><span class="badge badge-est">${t.est} pts</span>${t.tech?`<span class="badge badge-new">${t.tech}</span>`:""}</div>`;
+    inc.tickets.forEach(t=>{const ic=!!checked[t.id];const st=t.s||"";const c=document.createElement("div");c.className="ticket"+(ic?" checked":"")+(st==="partial"?" partial":"");c.dataset.id=t.id;c.dataset.priority=t.p.toLowerCase();c.dataset.layer=inc.layer;c.dataset.status=st;
+      c.innerHTML=`<label class="ticket-checkbox"><input type="checkbox" ${ic?"checked":""} onchange="toggleTicket('${t.id}',this)"><span class="checkmark"></span></label><div class="ticket-info"><div class="ticket-top"><span class="ticket-id">${t.id}</span><span class="ticket-title">${t.title}</span></div><div class="ticket-deps">deps: <span>${t.deps}</span></div></div><div class="ticket-badges">${st==="done"?'<span class="badge badge-done">DONE</span>':st==="partial"?'<span class="badge badge-partial">PARTIAL</span>':""}<span class="badge badge-${t.p.toLowerCase()}">${t.p}</span><span class="badge badge-est">${t.est} pts</span>${t.tech?`<span class="badge badge-new">${t.tech}</span>`:""}</div>`;
       tl.appendChild(c)});
   });
   const sep=document.createElement("div");sep.className="nav-sep";sep.textContent="Views";nav.appendChild(sep);
@@ -733,7 +744,7 @@ function toggleIncrement(h){h.parentElement.classList.toggle("open")}
 function expandAll(){document.querySelectorAll(".increment").forEach(e=>e.classList.add("open"))}
 function collapseAll(){document.querySelectorAll(".increment").forEach(e=>e.classList.remove("open"))}
 function setFilter(f,btn){currentFilter=f;document.querySelectorAll("#filterBar .filter-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");applyFilters()}
-function applyFilters(){const s=(document.getElementById("searchInput").value||"").toLowerCase();document.querySelectorAll(".ticket").forEach(c=>{const id=c.dataset.id.toLowerCase(),ti=c.querySelector(".ticket-title").textContent.toLowerCase(),pr=c.dataset.priority,ic=c.classList.contains("checked"),ly=c.dataset.layer;let show=true;if(currentFilter==="todo")show=!ic;else if(currentFilter==="done")show=ic;else if(currentFilter==="p0")show=pr==="p0";else if(currentFilter==="p1")show=pr==="p1";else if(currentFilter==="product")show=ly==="product";else if(currentFilter==="platform")show=ly==="platform";else if(currentFilter==="vision")show=ly==="vision";if(show&&s)show=id.includes(s)||ti.includes(s);c.classList.toggle("hidden",!show)});document.querySelectorAll(".increment").forEach(inc=>{const vis=inc.querySelectorAll(".ticket:not(.hidden)").length;inc.style.display=(vis===0&&(currentFilter!=="all"||s))?"none":""})}
+function applyFilters(){const s=(document.getElementById("searchInput").value||"").toLowerCase();document.querySelectorAll(".ticket").forEach(c=>{const id=c.dataset.id.toLowerCase(),ti=c.querySelector(".ticket-title").textContent.toLowerCase(),pr=c.dataset.priority,ic=c.classList.contains("checked"),ly=c.dataset.layer,st=c.dataset.status;let show=true;if(currentFilter==="todo")show=!ic&&st!=="done";else if(currentFilter==="done")show=ic||st==="done";else if(currentFilter==="partial")show=st==="partial";else if(currentFilter==="p0")show=pr==="p0";else if(currentFilter==="p1")show=pr==="p1";else if(currentFilter==="product")show=ly==="product";else if(currentFilter==="platform")show=ly==="platform";else if(currentFilter==="vision")show=ly==="vision";if(show&&s)show=id.includes(s)||ti.includes(s);c.classList.toggle("hidden",!show)});document.querySelectorAll(".increment").forEach(inc=>{const vis=inc.querySelectorAll(".ticket:not(.hidden)").length;inc.style.display=(vis===0&&(currentFilter!=="all"||s))?"none":""})}
 function resetAll(){if(confirm("Reset all checkboxes?")){checked={};saveState();render()}}
 
 // ── DIAGRAMS ──
