@@ -452,7 +452,7 @@ const INCREMENTS=[
 {id:"D-1",title:"Cross-questionnaire answer library",p:"P0",est:8,deps:"—",s:"partial"},
 {id:"D-2",title:"Answer reuse suggestions",p:"P0",est:5,deps:"D-1",s:"partial"},
 {id:"D-3",title:"Confidence scores on every answer",p:"P0",est:5,deps:"—",s:"partial"},
-{id:"D-4",title:"Evidence link citations in exports",p:"P0",est:5,deps:"D-3",s:"done"}]},
+{id:"D-4",title:"Evidence link citations in exports",p:"P0",est:5,deps:"D-3",s:"partial"}]},
 {num:5,title:"Cloud Integrations",color:"gold",layer:"product",tickets:[
 {id:"E-1",title:"AWS integration (IAM, S3, CloudTrail)",p:"P1",est:8,deps:"—",tech:"boto3"},
 {id:"E-2",title:"GCP integration",p:"P1",est:8,deps:"—"},
@@ -521,13 +521,13 @@ const INCREMENTS=[
 {id:"K-3",title:"Explore strategic partnerships",p:"P1",est:3,deps:"—"},
 {id:"K-4",title:"Define first hiring plan",p:"P1",est:3,deps:"—"}]},
 {num:12,title:"Platform Foundation",color:"green",layer:"platform",tickets:[
-{id:"P0-01",title:"Define core domain model",p:"P0",est:8,deps:"—",tech:"SQLAlchemy",s:"done"},
-{id:"P0-02",title:"Create control catalog",p:"P0",est:8,deps:"P0-01",s:"done"},
+{id:"P0-01",title:"Define core domain model",p:"P0",est:8,deps:"—",tech:"SQLAlchemy",s:"partial"},
+{id:"P0-02",title:"Create control catalog",p:"P0",est:8,deps:"P0-01",s:"partial"},
 {id:"P0-03",title:"Design evidence schema",p:"P0",est:8,deps:"P0-01",s:"done"},
-{id:"P0-04",title:"Build tenant isolation rules",p:"P0",est:5,deps:"P0-01",s:"done"},
+{id:"P0-04",title:"Build tenant isolation rules",p:"P0",est:5,deps:"P0-01",s:"partial"},
 {id:"P0-05",title:"Create source registry",p:"P0",est:5,deps:"P0-01",s:"partial"},
-{id:"P0-06",title:"Stand up async job queue",p:"P0",est:5,deps:"P0-01",tech:"Worker",s:"done"},
-{id:"P0-07",title:"Create system audit log",p:"P0",est:5,deps:"P0-01",s:"done"},
+{id:"P0-06",title:"Stand up async job queue",p:"P0",est:5,deps:"P0-01",tech:"Worker",s:"partial"},
+{id:"P0-07",title:"Create system audit log",p:"P0",est:5,deps:"P0-01",s:"partial"},
 {id:"P0-08",title:"Implement secrets management",p:"P0",est:5,deps:"—",s:"partial"},
 {id:"P0-09",title:"Add feature flags by workspace",p:"P0",est:5,deps:"P0-01"},
 {id:"P0-10",title:"Build credits and usage ledger",p:"P0",est:5,deps:"P0-01",s:"partial"},
@@ -565,21 +565,21 @@ const INCREMENTS=[
 {id:"P1-40",title:"Build control timeline view",p:"P1",est:5,deps:"P1-34"}]},
 {num:15,title:"Evidence Engine",color:"orange",layer:"platform",tickets:[
 {id:"P1-41",title:"Build evidence cards per control",p:"P0",est:5,deps:"P0-03"},
-{id:"P1-42",title:'Add "last verified" timestamps',p:"P0",est:2,deps:"P0-03",s:"done"},
+{id:"P1-42",title:'Add "last verified" timestamps',p:"P0",est:2,deps:"P0-03",s:"partial"},
 {id:"P1-43",title:"Build evidence freshness policies",p:"P0",est:3,deps:"P1-42",s:"partial"},
 {id:"P1-44",title:"Build evidence version history",p:"P0",est:3,deps:"P0-03",s:"partial"},
 {id:"P1-45",title:"Build evidence diff viewer",p:"P1",est:5,deps:"P1-44"},
 {id:"P1-46",title:"Build source confidence scoring",p:"P0",est:5,deps:"P0-03",s:"partial"},
 {id:"P1-47",title:"Build evidence approval workflows",p:"P0",est:5,deps:"P0-03",s:"partial"},
 {id:"P1-48",title:"Build citation composer",p:"P0",est:5,deps:"P1-46",s:"partial"},
-{id:"P1-49",title:"Build coverage report generator",p:"P0",est:5,deps:"P0-02",s:"done"},
-{id:"P1-50",title:"Build gap-list generator",p:"P0",est:5,deps:"P1-49",s:"done"},
+{id:"P1-49",title:"Build coverage report generator",p:"P0",est:5,deps:"P0-02",s:"partial"},
+{id:"P1-50",title:"Build gap-list generator",p:"P0",est:5,deps:"P1-49",s:"partial"},
 {id:"P1-51",title:"Build evidence retention and archiving",p:"P1",est:5,deps:"P0-03",s:"partial"},
 {id:"P1-52",title:"Build evidence search and retrieval APIs",p:"P1",est:5,deps:"P0-03",tech:"pgvector",s:"partial"}]},
 {num:16,title:"Questionnaire OS",color:"param",layer:"platform",tickets:[
-{id:"P1-53",title:"Build questionnaire file ingestion",p:"P0",est:5,deps:"P0-06",s:"done"},
+{id:"P1-53",title:"Build questionnaire file ingestion",p:"P0",est:5,deps:"P0-06",s:"partial"},
 {id:"P1-54",title:"Build question extraction and normalization",p:"P0",est:5,deps:"P1-53",s:"done"},
-{id:"P1-55",title:"Build question classification",p:"P0",est:5,deps:"P1-54",s:"done"},
+{id:"P1-55",title:"Build question classification",p:"P0",est:5,deps:"P1-54",s:"partial"},
 {id:"P1-56",title:"Build answer assembly pipeline",p:"P0",est:8,deps:"P1-55",tech:"RAG",s:"done"},
 {id:"P1-57",title:"Build confidence-based routing",p:"P0",est:5,deps:"P1-56",s:"partial"},
 {id:"P1-58",title:"Build export back to original format",p:"P0",est:5,deps:"P1-56",s:"done"},
@@ -624,9 +624,9 @@ const INCREMENTS=[
 {id:"P0-94",title:"Build testimonial and referral workflow",p:"P1",est:3,deps:"H-3"},
 {id:"P0-95",title:"Build attribution and demand capture",p:"P1",est:5,deps:"P0-86"}]},
 {num:20,title:"Enterprise Hardening",color:"purple",layer:"platform",tickets:[
-{id:"P2-96",title:"Build role-based access control",p:"P0",est:5,deps:"P0-01",s:"done"},
+{id:"P2-96",title:"Build role-based access control",p:"P0",est:5,deps:"P0-01",s:"partial"},
 {id:"P2-97",title:"Build SSO and SAML support",p:"P0",est:5,deps:"P0-01",tech:"OIDC/SAML",s:"partial"},
-{id:"P2-98",title:"Build product MFA enforcement",p:"P0",est:5,deps:"P0-01",tech:"TOTP",s:"done"},
+{id:"P2-98",title:"Build product MFA enforcement",p:"P0",est:5,deps:"P0-01",tech:"TOTP",s:"partial"},
 {id:"P2-99",title:"Build data retention and export controls",p:"P0",est:5,deps:"P0-03",s:"partial"},
 {id:"P2-100",title:"Build incident and status pages",p:"P1",est:5,deps:"—"},
 {id:"P2-101",title:"Build reliability SLIs and on-call",p:"P1",est:5,deps:"P0-06"},
@@ -701,7 +701,7 @@ const INCREMENTS=[
 const COLORS={blue:"#5b7cff",purple:"#a78bfa",green:"#22c55e",teal:"#2dd4bf",gold:"#fbbf24",orange:"#fb923c",param:"#38bdf8",decorator:"#fb7185",number:"#a3e635"};
 const LAYER_LABELS={product:"PROD",platform:"PLAT",vision:"VIS"};
 const LAYER_CSS={product:"prod",platform:"plat",vision:"vis"};
-const STORAGE_KEY="tc-backlog-v2";
+const STORAGE_KEY="tc-backlog-v3";
 let checked={},currentFilter="all";
 function loadState(){
   try{checked=JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){checked={}}
